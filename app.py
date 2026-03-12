@@ -15,8 +15,8 @@ _supabase: Client | None = None
 def get_sb():
     global _supabase
     if _supabase is None:
-        url = os.environ.get("SUPABASE_URL")
-        key = os.environ.get("SUPABASE_KEY")
+        url = "https://ugsxvqpnbpbuqsevjdyt.supabase.co"
+        key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVnc3h2cXBuYnBidXFzZXZqZHl0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMyOTg1OTksImV4cCI6MjA4ODg3NDU5OX0.Z6VOGtY99B-KeLdC_XkdKlCk9oYtxLqRJtHpP_rvjD8"
         _supabase = create_client(url, key)
 
     return _supabase
