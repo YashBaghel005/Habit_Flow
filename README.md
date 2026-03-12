@@ -2,34 +2,39 @@
 
 HabitFlow is a **modern habit tracking web application** that helps users build consistency through visual analytics like streak tracking, monthly matrices, and activity heatmaps.
 
-The app uses **Flask for the backend** and **Supabase for authentication and database management**, providing a smooth full-stack experience.
+It uses **Flask for the backend** and **Supabase for authentication and database**, with a clean interactive frontend built in HTML, CSS, and JavaScript.
 
 ---
 
-## Live Demo
+# Live Demo
 
-*(Add after deployment)*
+*(Add your Vercel deployment link here)*
 
 ```
-https://your-vercel-link.vercel.app
+https://your-project-name.vercel.app
 ```
 
 ---
 
 # Features
 
-* User authentication with Supabase
+* Secure user authentication using Supabase
 * Create, edit, and delete habits
 * Daily habit completion tracking
-* Habit streak calculation
-* Monthly habit matrix view
+* Automatic habit streak calculation
+* Monthly habit matrix dashboard
 * Yearly activity heatmap
-* Habit analytics and statistics
-* Beautiful modern UI
+* Progress analytics and charts
+* Modern responsive UI
 
 ---
 
 # Tech Stack
+
+### Backend
+
+* Python
+* Flask
 
 ### Frontend
 
@@ -37,10 +42,6 @@ https://your-vercel-link.vercel.app
 * CSS
 * JavaScript
 * Chart.js
-
-### Backend
-
-* Flask (Python)
 
 ### Database & Auth
 
@@ -57,9 +58,7 @@ https://your-vercel-link.vercel.app
 ```
 habitflow
 │
-├── api
-│   └── app.py
-│
+├── app.py
 ├── templates
 │   └── index.html
 │
@@ -68,39 +67,48 @@ habitflow
 └── README.md
 ```
 
----
-
-# Installation (Local Setup)
-
-### 1️⃣ Clone the repository
-
-```
-git clone https://github.com/YOUR_USERNAME/habitflow.git
-cd habitflow
-```
+* `app.py` → Flask backend handling APIs and database operations
+* `templates/index.html` → Frontend UI and authentication logic
+* `requirements.txt` → Python dependencies 
+* `vercel.json` → Vercel deployment configuration 
 
 ---
 
-### 2️⃣ Install dependencies
+# Installation (Run Locally)
+
+### 1 Clone the repository
+
+```
+git clone https://github.com/YOUR_USERNAME/Habit_Flow.git
+cd Habit_Flow
+```
+
+---
+
+### 2 Install dependencies
 
 ```
 pip install -r requirements.txt
 ```
 
+Dependencies include Flask, Supabase Python client, and python-dotenv. 
+
 ---
 
-### 3️⃣ Create environment variables
+### 3 Create environment variables
 
-Create a `.env` file:
+Create a `.env` file in the root folder.
 
 ```
 SUPABASE_URL=your_supabase_project_url
-SUPABASE_KEY=your_supabase_anon_public_key
+SUPABASE_KEY=your_supabase_anon_key
 ```
+
+The backend loads these variables automatically using `python-dotenv`. 
 
 ---
 
-### 4️⃣ Run the server
+### 4 Run the application
 
 ```
 python app.py
@@ -114,37 +122,58 @@ http://127.0.0.1:5000
 
 ---
 
-# Screenshots
+# Database Setup
 
-*(You can add screenshots of your UI here)*
+In Supabase SQL Editor run:
 
-Example sections:
+```
+CREATE TABLE habits (
+  id TEXT PRIMARY KEY,
+  user_id UUID NOT NULL,
+  name TEXT NOT NULL,
+  icon TEXT,
+  category TEXT,
+  color TEXT
+);
 
-* Dashboard
-* Monthly Matrix
-* Heatmap Analytics
+CREATE TABLE logs (
+  id BIGSERIAL PRIMARY KEY,
+  user_id UUID NOT NULL,
+  habit_id TEXT NOT NULL,
+  log_date DATE NOT NULL
+);
+```
+
+Row Level Security (RLS) should be enabled so users only see their own habits.
 
 ---
 
-# Future Improvements
+# Deployment
 
-* Habit reminder notifications
-* Weekly progress reports
-* AI habit suggestions
-* Mobile responsive improvements
-* Social sharing / community habits
+This project is deployed using **Vercel serverless Python runtime**.
+
+The configuration in `vercel.json` routes all requests to the Flask app. 
+
+To deploy:
+
+1. Push the repository to GitHub
+2. Import the repo in **Vercel**
+3. Add environment variables:
+
+```
+SUPABASE_URL
+SUPABASE_KEY
+```
+
+4. Deploy
 
 ---
 
-# Learning Outcomes
+# Security Notes
 
-This project demonstrates:
-
-* Full-stack web development
-* REST API design with Flask
-* Authentication and database integration
-* Data visualization with Chart.js
-* Deployment of serverless web apps
+* Supabase **Row Level Security (RLS)** protects user data
+* The application uses the **Supabase anon public key**, which is safe for frontend usage
+* Each API request includes the authenticated user's ID
 
 ---
 
@@ -155,9 +184,4 @@ This project demonstrates:
 GitHub
 [https://github.com/YashBaghel005](https://github.com/YashBaghel005)
 
----
-
-# License
-
-This project is open source and available under the MIT License.
 
